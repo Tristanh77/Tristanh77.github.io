@@ -9,20 +9,72 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* width */
+        ::-webkit-scrollbar {
+          width: 10px;
+        }
+        
+        /* Track */
+        ::-webkit-scrollbar-track {
+          background: #f1f1f1; 
+        }
+         
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+          background: #888; 
+        }
+        
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+          background: #555; 
+        }
+        </style>
 </head>
 <body>
     <header>
-        <a href="../index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
+        <a class='links' href="../index.html">Home</a>
+        <a class='links' href="about.html">About</a>
+        <a class='links' href="projects.html">Projects</a>
+        <a class='links' href="contact.html">Contact</a>
     </header>
+    <section id="projects">
+    <div class = "frame col-xs-6">
+        <img src = "https://i.imgur.com/0P1oXkh.jpg">
+        <div class = "details">
+            <h1>Nova</h1>
+            <p>Launched a space focused social media site using React and MongoDb. Also built with Nasa's Image Library Api as well as AWS</p>
+            <a class='links'href="https://tristan-hartman-nova.onrender.com/">Deployed App</a>
+        </div>
+    </div>
+    <div class = "frame col-xs-6">
+        <img src = "https://i.imgur.com/5qPMxDL.png">
+        <div class = "details">
+            <h1>MedTracker</h1>
+            <p>Created a full stack medicine tracker experience. Coded using Django, Python, Materialized, Javascript, HTML, and CSS 
+                </p>
+            <a class='links'href="https://falling-sea-1616.fly.dev/">Deployed App</a>
+        </div>
+    </div>
+    <div class = "frame col-xs-6">
+        <img src = "https://i.imgur.com/0caaQiN.png">
+        <div class = "details">
+            <h1>ForeignCo</h1>
+               <p>Created a full stack fantasy car marketplace using MongoDb, Express, and Googles authentication API </p>
+            <a class='links'href="https://pink-outrageous-pelican.cyclic.app/cars">Deployed App</a>
+        </div>
+    </div>
+    <div class = "frame col-xs-6">
+        <img src = "https://i.imgur.com/5RQDXQa.png">
+        <div class = "details">
+            <h1>Tristan's Blackjack</h1>
+            <p>Created the classic casino game blackjack. Front end application built using Javascript, HTML, and CSS 
+                </p>
+            <a class='links'href="https://tristanh77.github.io/blackjack2/">Deployed App</a>
+        </div>
+    </div>
+</section>
 
-    <section id="projects"> <img id='nova' src="https://i.imgur.com/0P1oXkh.jpg"><a class='links'href="https://tristan-hartman-nova.onrender.com/">Nova</a>
-    <img id="meds" src="https://i.imgur.com/5qPMxDL.png"><a class='links' href="https://falling-sea-1616.fly.dev/">Med Tracker</a>
-    <img id="cars" src="https://i.imgur.com/0caaQiN.png"><a class='links'href="https://pink-outrageous-pelican.cyclic.app/cars">ForeignCo</a>
-    <img id="black" src="https://i.imgur.com/5RQDXQa.png"><a class='links'href="https://tristanh77.github.io/blackjack2/">Blackjack</a>
-    </section>
     <!-- <div class="stars">
         <div class="star"></div>
         <div class="star"></div>
@@ -75,6 +127,6 @@
         <div class="star"></div>
         <div class="star"></div>
       </div> -->
-      <footer><a href="https://www.linkedin.com/in/tristanjhartman/">LinkedIn</a> <a href="https://github.com/Tristanh77">Github</a> <a href="file:///Users/tristanhartman/Documents/Tristan%20Hartman%20Resume.pdf"> Resume</a></footer>
+      <footer><a class='links' href="https://www.linkedin.com/in/tristanjhartman/">LinkedIn</a> <a class='links' href="https://github.com/Tristanh77">Github</a> <a class='links' href="file:///Users/tristanhartman/Documents/Tristan%20Hartman%20Resume.pdf"> Resume</a></footer>
 </body>
 </html>
