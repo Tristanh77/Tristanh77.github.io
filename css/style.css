@@ -30,7 +30,9 @@ footer {
   padding-top: 200px;
 }
 #welcome{
+  padding-top: 100px;
   text-align: center;
+  font-size: 25px ;
 }
 .links{
   font-family: 'Space Mono', monospace;
@@ -63,6 +65,7 @@ footer {
 }
 #name{
   text-align: center;
+  font-size: 60px;
 }
 #contactMe{
   text-align: center;
@@ -89,6 +92,7 @@ footer {
 }
 #title{
   text-align: center;
+  font-size: 30px;
 }
 
 .stars {
