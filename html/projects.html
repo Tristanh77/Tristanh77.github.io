@@ -1,94 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tristan Hartman Portfolio</title>
-    <link href="../css/style.css" rel="stylesheet"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        /* width */
-        ::-webkit-scrollbar {
-          width: 10px;
-        }
-        
-        /* Track */
-        ::-webkit-scrollbar-track {
-          background: #f1f1f1; 
-        }
-         
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-          background: #888; 
-        }
-        
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-          background: #555; 
-        }
-        </style>
-</head>
-<body>
+      /* width */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+
+      /* Grid layout for projects */
+      #projects {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .frame {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .frame img {
+        width: 100%;
+        height: auto;
+      }
+
+      .details {
+        padding: 10px;
+      }
+
+      .details h1 {
+        margin-top: 0;
+        font-size: 1.5em;
+      }
+
+      .details p {
+        margin: 10px 0;
+      }
+
+      .details a {
+        color: #0073e6;
+        text-decoration: none;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
     <header>
-        <section id="sources">
-        <a class='links' href="https://www.linkedin.com/in/tristanjhartman/">LinkedIn</a> 
-        <a class='links' href="https://github.com/Tristanh77">Github</a> 
-        <a class='links' href="https://drive.google.com/file/d/1hMlPC81PtL2-9VsPHTnfkvuEznNnSrZl/view?usp=sharing"> Resume</a>
-        </section>
-        <a class='links' href="../index.html">Home</a>
-        <a class='links' href="about.html">About</a>
-        <a class='links' href="projects.html">Projects</a>
-        <a class='links' href="contact.html">Contact</a>
+      <section id="sources">
+        <a class="links" href="https://www.linkedin.com/in/tristanjhartman/"
+          >LinkedIn</a
+        >
+        <a class="links" href="https://github.com/Tristanh77">Github</a>
+        <a
+          class="links"
+          href="https://drive.google.com/file/d/1mWo0tSn3e_DrNIocp0NzULJ1619YmxGS/view?usp=sharing"
+        >
+          Resume</a
+        >
+      </section>
+      <a class="links" href="../index.html">Home</a>
+      <a class="links" href="about.html">About</a>
+      <a class="links" href="projects.html">Projects</a>
+      <a class="links" href="contact.html">Contact</a>
     </header>
     <section id="projects">
-    <div class = "frame col-xs-6">
-        <img src = "https://i.imgur.com/0P1oXkh.jpg">
-        <div class = "details">
-            <h1>Nova</h1>
-            <p>Launched a space focused social media site using React and MongoDb. Also built with Nasa's Image Library Api as well as AWS</p>
-            <a class='links'href="https://tristan-hartman-nova.onrender.com/">Deployed App</a>
+      <div class="frame col-xs-6">
+        <img src="https://i.imgur.com/tooHryW.png" />
+        <div class="details">
+          <h1>MacroCount</h1>
+          <p>
+            MacroCount is a mobile-first macro tracker designed for simplicity, speed, and ease of use. Users can easily sign up and input their starting information, including weight, goals, and macro/calorie targets. 
+          </p>
+          <a class="links" href="https://macrocount.onrender.com/"
+            >Deployed App</a
+          >
         </div>
-    </div>
-    <div class = "frame col-xs-6">
-        <img src = "https://i.imgur.com/5qPMxDL.png">
-        <div class = "details">
-            <h1>MedTracker</h1>
-            <p>Created a full stack medicine tracker experience. Coded using Django, Python, Materialized, Javascript, HTML, and CSS 
-                </p>
-            <a class='links'href="https://falling-sea-1616.fly.dev/">Deployed App</a>
+      </div>
+      <div class="frame col-xs-6">
+        <img src="https://i.imgur.com/0P1oXkh.jpg" />
+        <div class="details">
+          <h1>Nova</h1>
+          <p>
+            Launched a space focused social media site using React and MongoDb.
+            Also built with Nasa's Image Library Api as well as AWS
+          </p>
+          <a class="links" href="https://tristan-hartman-nova.onrender.com/"
+            >Deployed App</a
+          >
         </div>
-    </div>
-    <div class = "frame col-xs-6">
-        <img src = "https://i.imgur.com/yoboWsm.png">
-        <div class = "details">
-            <h1>AYYM</h1>
-            <p>Created a full stack budget tracking app. Coded during a one week hackathon for mobile first using MERN Stack.
-                </p>
-            <a class='links'href="https://ayym-3bbe92ba31d6.herokuapp.com/">Deployed App</a>
+      </div>
+      <div class="frame col-xs-6">
+        <img src="https://i.imgur.com/5qPMxDL.png" />
+        <div class="details">
+          <h1>MedTracker</h1>
+          <p>
+            Created a full stack medicine tracker experience. Coded using
+            Django, Python, Materialized, Javascript, HTML, and CSS
+          </p>
+          <a class="links" href="https://falling-sea-1616.fly.dev/"
+            >Deployed App</a
+          >
         </div>
-    </div>
-    <div class = "frame col-xs-6">
-        <img src = "https://i.imgur.com/0caaQiN.png">
-        <div class = "details">
-            <h1>ForeignCo</h1>
-               <p>Created a full stack fantasy car marketplace using MongoDb, Express, and Googles authentication API </p>
-            <a class='links'href="https://pink-outrageous-pelican.cyclic.app/cars">Deployed App</a>
+      </div>
+      <div class="frame col-xs-6">
+        <img src="https://i.imgur.com/yoboWsm.png" />
+        <div class="details">
+          <h1>AYYM</h1>
+          <p>
+            Created a full stack budget tracking app. Coded during a one week
+            hackathon for mobile first using MERN Stack.
+          </p>
+          <a class="links" href="https://ayym-3bbe92ba31d6.herokuapp.com/"
+            >Deployed App</a
+          >
         </div>
-    </div>
-    <div class = "frame col-xs-6">
-        <img src = "https://i.imgur.com/5RQDXQa.png">
-        <div class = "details">
-            <h1>Tristan's Blackjack</h1>
-            <p>Created the classic casino game blackjack. Front end application built using Javascript, HTML, and CSS 
-                </p>
-            <a class='links'href="https://tristanh77.github.io/blackjack2/">Deployed App</a>
+      </div>
+      <div class="frame col-xs-6">
+        <img src="https://i.imgur.com/0caaQiN.png" />
+        <div class="details">
+          <h1>ForeignCo</h1>
+          <p>
+            Created a full stack fantasy car marketplace using MongoDb, Express,
+            and Googles authentication API
+          </p>
+          <a
+            class="links"
+            href="https://pink-outrageous-pelican.cyclic.app/cars"
+            >Deployed App</a
+          >
         </div>
-    </div>
-</section>
-
-   
-</body>
+      </div>
+      <div class="frame col-xs-6">
+        <img src="https://i.imgur.com/5RQDXQa.png" />
+        <div class="details">
+          <h1>Tristan's Blackjack</h1>
+          <p>
+            Created the classic casino game blackjack. Front end application
+            built using Javascript, HTML, and CSS
+          </p>
+          <a class="links" href="https://tristanh77.github.io/blackjack2/"
+            >Deployed App</a
+          >
+        </div>
+      </div>
+    </section>
+  </body>
 </html>
