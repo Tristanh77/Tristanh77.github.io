@@ -1,86 +1,420 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tristan Hartman Portfolio</title>
-    <link href="css/style.css" rel="stylesheet"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tristan Hartman | Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" >
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" >
+  <style>
+    :root {
+      --text-color: #f5f5f5;
+      --accent-color: #00adee;
+      --secondary-color: #2f2f2f;
+      --font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text-color);
+      font-family: var(--font-family);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+
+      /* Background layers:
+         1. A dark radial gradient at the center for focal depth.
+         2. A linear gradient to add variety and angle.
+         3. A subtle transparent pattern overlay.
+      */
+      background: 
+        radial-gradient(circle at 50% 50%, #222222 20%, #1e1e1e 80%) no-repeat,
+        linear-gradient(135deg, #1c1c1c 0%, #2a2a2a 100%) no-repeat,
+        url('https://www.transparenttextures.com/patterns/noise.png'); /* Subtle noise pattern from a public domain resource */
+
+      background-size: cover, cover, auto;
+      background-blend-mode: overlay, normal; 
+      /* The overlay blend mode merges the noise texture slightly with the underlying gradients. */
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1em 2em;
+      backdrop-filter: blur(10px);
+      background: rgba(31, 31, 31, 0.7);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 999;
+    }
+
+    header .branding a {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.2em;
+      letter-spacing: 0.05em;
+    }
+
+    header .nav-links a {
+      margin-left: 1.5em;
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    header .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: -3px;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      transform-origin: center;
+      height: 2px;
+      width: 100%;
+      background: linear-gradient(to right, var(--accent-color), #fff);
+      transition: transform 0.3s ease;
+    }
+
+    header .nav-links a:hover::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    header .nav-links a:hover {
+      color: var(--accent-color);
+      transform: translateY(-1px);
+    }
+
+    #home {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 90vh;
+      text-align: center;
+      padding: 2em;
+      position: relative;
+    }
+
+    #home h1 {
+      font-size: 3em;
+      margin: 0;
+      font-weight: 700;
+      background: linear-gradient(to right, var(--accent-color), #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    #home h3 {
+      font-size: 1.5em;
+      margin-top: 0.5em;
+      font-weight: 400;
+      color: #cccccc;
+      letter-spacing: 0.02em;
+    }
+
+    #home p {
+      max-width: 600px;
+      margin-top: 1em;
+      color: #d0d0d0;
+      font-size: 1.1em;
+      line-height: 1.8;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4em 2em;
+      position: relative;
+    }
+
+    section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 1px;
+      background: rgba(255,255,255,0.05);
+    }
+
+    section h2 {
+      font-size: 2em;
+      margin-bottom: 1em;
+      display: inline-block;
+      padding-bottom: 0.25em;
+      background: linear-gradient(to right, #fff, var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    #about p {
+      max-width: 700px;
+      margin-bottom: 2em;
+      color: #d0d0d0;
+      font-size: 1.05em;
+      line-height: 1.8;
+    }
+
+    #projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2em;
+      margin-top: 2em;
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      background: var(--secondary-color);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .project-details {
+      padding: 1.5em;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-details h3 {
+      margin: 0;
+      font-size: 1.25em;
+      margin-bottom: 0.5em;
+      background: linear-gradient(to right, var(--accent-color), #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .project-details p {
+      margin-bottom: 1em;
+      font-size: 0.95em;
+      color: #cccccc;
+      line-height: 1.6;
+    }
+
+    .project-details a {
+      align-self: flex-start;
+      text-decoration: none;
+      color: var(--accent-color);
+      font-weight: 700;
+      padding: 0.5em 1em;
+      background: rgba(0,173,238,0.2);
+      border-radius: 4px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .project-details a:hover {
+      background: var(--accent-color);
+      color: #1f1f1f;
+    }
+
+    #contact p {
+      max-width: 600px;
+      color: #d0d0d0;
+      font-size: 1.05em;
+      line-height: 1.8;
+    }
+
+    #contact .links-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1.5em;
+      margin-top: 2em;
+    }
+
+    #contact .links-container a {
+      text-decoration: none;
+      background: rgba(0,173,238,0.2);
+      padding: 0.75em 1.5em;
+      border-radius: 25px;
+      font-weight: 700;
+      color: var(--text-color);
+      transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+      letter-spacing: 0.03em;
+    }
+
+    #contact .links-container a:hover {
+      background: var(--accent-color);
+      color: #1f1f1f;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      backdrop-filter: blur(10px);
+      background: rgba(31,31,31,0.6);
+      text-align: center;
+      padding: 2em;
+      color: #999999;
+      font-size: 0.85em;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    @media screen and (max-width: 600px) {
+      #home h1 {
+        font-size: 2.2em;
+      }
+      header .nav-links {
+        display: none;
+      }
+      #contact .links-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <section id="sources">
-        <a class='links' href="https://www.linkedin.com/in/tristanjhartman/">LinkedIn</a> 
-        <a class='links' href="https://github.com/Tristanh77">Github</a> 
-        <a class='links' href="https://drive.google.com/file/d/1mWo0tSn3e_DrNIocp0NzULJ1619YmxGS/view?usp=sharing"> Resume</a>
-        </section>
-        <a class='links' href="index.html">Home</a>
-        <a class='links' href="html/about.html">About</a>
-        <a class='links' href="html/projects.html">Projects</a>
-        <a class='links' href="html/contact.html">Contact</a>
-    </header>
-    <div id="home">
-    <h1 class='words' id="name">Tristan Hartman</h1>
-    <h3 class='words' id="title">Software Engineer</h3>
-    <h5 class='words' id="welcome">Welcome To My Portfolio. Be Sure To Learn About Me As A Software Engineer As Well As Check Out Some Of My Past Projects!</h5>
+  <header>
+    <div class="branding">
+      <a href="#home">TH</a>
     </div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <a href="https://www.linkedin.com/in/tristanjhartman/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/Tristanh77" target="_blank">Github</a>
+      <a href="https://drive.google.com/file/d/1mWo0tSn3e_DrNIocp0NzULJ1619YmxGS/view?usp=sharing" target="_blank">Resume</a>
+    </nav>
+  </header>
 
+  <section id="home">
+    <h1>Tristan Hartman</h1>
+    <h3>Software Engineer | Full-Stack Developer</h3>
+    <p>
+      Welcome to my portfolio. Explore my background, browse recent projects, and get in touch.
+      I craft clean, efficient code and intuitive user experiences that drive impactful digital solutions.
+    </p>
+  </section>
 
-    <div class="stars">
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I'm a Software Engineer with a passion for building accessible and user-centric technology solutions. My background includes studying Software Engineering at Drexel University and completing an immersive 420-hour bootcamp at General Assembly. I focus on writing clean, maintainable code and designing interfaces that make technology intuitive for everyone. Driven by curiosity, reliability, and the pursuit of excellence, I continuously refine my skills to stay at the cutting edge of modern software development.
+    </p>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div id="projects-grid">
+      <div class="project-card">
+        <img src="https://i.imgur.com/ZUNRU23.png" alt="BreatheWell">
+        <div class="project-details">
+          <h3>BreatheWell</h3>
+          <p>
+            Real-time local air quality tracker offering live updates and personalized health recommendations. Helps users make informed outdoor activity decisions.
+          </p>
+          <a href="https://ga-enviro-hackathon-wind2024.onrender.com/" target="_blank">View App</a>
+        </div>
       </div>
+      <div class="project-card">
+        <img src="https://i.imgur.com/tooHryW.png" alt="MacroCount">
+        <div class="project-details">
+          <h3>MacroCount</h3>
+          <p>
+            A mobile-first macro tracker designed for simplicity. Input weight, goals, and macro targets easily, and track your nutrition on the go.
+          </p>
+          <a href="https://macrocount.onrender.com/" target="_blank">View App</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://i.imgur.com/0P1oXkh.jpg" alt="Nova">
+        <div class="project-details">
+          <h3>Nova</h3>
+          <p>
+            A space-focused social media platform built with React, MongoDB, NASA's Image Library API, and AWS integration. Connect through a cosmic lens.
+          </p>
+          <a href="https://tristan-hartman-nova.onrender.com/" target="_blank">View App</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://i.imgur.com/5qPMxDL.png" alt="MedTracker">
+        <div class="project-details">
+          <h3>MedTracker</h3>
+          <p>
+            A full-stack medicine tracker built with Django, Python, and Materialize. Seamless tracking of prescriptions and schedules to maintain your health.
+          </p>
+          <a href="https://falling-sea-1616.fly.dev/" target="_blank">View App</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://i.imgur.com/yoboWsm.png" alt="AYYM">
+        <div class="project-details">
+          <h3>AYYM</h3>
+          <p>
+            A budget tracking app developed during a week-long hackathon using the MERN stack. Mobile-first and intuitive to keep your finances in check.
+          </p>
+          <a href="https://ayym-3bbe92ba31d6.herokuapp.com/" target="_blank">View App</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://i.imgur.com/0caaQiN.png" alt="ForeignCo">
+        <div class="project-details">
+          <h3>ForeignCo</h3>
+          <p>
+            A fantasy car marketplace using MongoDB, Express, and Google's authentication API. Browse, list, and dream about exotic cars.
+          </p>
+          <a href="https://pink-outrageous-pelican.cyclic.app/cars" target="_blank">View App</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://i.imgur.com/5RQDXQa.png" alt="Blackjack">
+        <div class="project-details">
+          <h3>Blackjack</h3>
+          <p>
+            The classic casino game recreated with JavaScript, HTML, and CSS. Test your luck and strategy in a clean, intuitive interface.
+          </p>
+          <a href="https://tristanh77.github.io/blackjack2/" target="_blank">View Game</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>
+      Whether you have a project in mind, a question, or just want to say hello, I'd love to hear from you. Feel free to reach out through the channels below.
+    </p>
+    <div class="links-container">
+      <a href="mailto:your_email@example.com">Email Me</a>
+      <a href="https://www.linkedin.com/in/tristanjhartman/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/Tristanh77" target="_blank">GitHub</a>
+      <a href="https://drive.google.com/file/d/1mWo0tSn3e_DrNIocp0NzULJ1619YmxGS/view?usp=sharing" target="_blank">Resume</a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2024 Tristan Hartman. All rights reserved.
+  </footer>
+
 </body>
 </html>
