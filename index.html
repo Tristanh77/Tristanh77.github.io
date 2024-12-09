@@ -24,19 +24,13 @@
       scroll-behavior: smooth;
       overflow-x: hidden;
 
-      /* Background layers:
-         1. A dark radial gradient at the center for focal depth.
-         2. A linear gradient to add variety and angle.
-         3. A subtle transparent pattern overlay.
-      */
       background: 
         radial-gradient(circle at 50% 50%, #222222 20%, #1e1e1e 80%) no-repeat,
         linear-gradient(135deg, #1c1c1c 0%, #2a2a2a 100%) no-repeat,
-        url('https://www.transparenttextures.com/patterns/noise.png'); /* Subtle noise pattern from a public domain resource */
+        url('https://www.transparenttextures.com/patterns/noise.png');
 
       background-size: cover, cover, auto;
       background-blend-mode: overlay, normal; 
-      /* The overlay blend mode merges the noise texture slightly with the underlying gradients. */
     }
 
     header {
@@ -319,7 +313,11 @@
   <section id="about">
     <h2>About Me</h2>
     <p>
-      I'm a Software Engineer with a passion for building accessible and user-centric technology solutions. My background includes studying Software Engineering at Drexel University and completing an immersive 420-hour bootcamp at General Assembly. I focus on writing clean, maintainable code and designing interfaces that make technology intuitive for everyone. Driven by curiosity, reliability, and the pursuit of excellence, I continuously refine my skills to stay at the cutting edge of modern software development.
+        I’m a Software Engineer with a strong foundation in designing and implementing user-centric technology solutions. My experience at TeammateMe as a Lead Full Stack Developer involved leading the integration of RESTful APIs and enhancing the functionality and user experience of web applications.
+
+        I studied Software Engineering at Drexel University and completed an intensive 450+ hour Software Engineering Immersive at General Assembly, where I gained hands-on experience in full-stack development, object-oriented programming, and modern web technologies.
+        
+        Driven by curiosity, reliability, and a commitment to excellence, I focus on crafting clean, maintainable code and building intuitive interfaces that enhance user experiences. I thrive in solving complex problems and delivering impactful solutions.
     </p>
   </section>
 
@@ -416,5 +414,20 @@
     &copy; 2024 Tristan Hartman. All rights reserved.
   </footer>
 
+  <script>
+    // Select all internal links in the header that start with #
+    const internalLinks = document.querySelectorAll('header a[href^="#"]');
+  
+    internalLinks.forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        const targetId = link.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
