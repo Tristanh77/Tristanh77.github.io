@@ -3,152 +3,244 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tristan Hartman | Software Engineer</title>
+  <title>Tristan Hartman | Software Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" >
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" >
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@700&family=Poppins:wght@600;700&display=swap" rel="stylesheet" >
+
+  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
   <style>
     :root {
-      --text-color: #f5f5f5;
-      --accent-color: #00adee;
-      --secondary-color: #2f2f2f;
-      --font-family: 'Inter', sans-serif;
+      --text-color: #ffffff;
+      --color-lightblue: #9CC8E6;
+      --color-teal: #5BA0BC;
+      --color-navy: #0F2E3B;
+      --color-yellow: #F3BA4B;
+      --color-orange: #F28930;
+      --bg-base: var(--color-navy);
+      --font-primary: 'Inter', sans-serif;
+      --font-heading: 'Poppins', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
     }
 
-    body {
-      margin: 0;
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg-base);
       color: var(--text-color);
-      font-family: var(--font-family);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      scroll-behavior: smooth;
+      font-family: var(--font-primary);
       overflow-x: hidden;
-
-      background: 
-        radial-gradient(circle at 50% 50%, #222222 20%, #1e1e1e 80%) no-repeat,
-        linear-gradient(135deg, #1c1c1c 0%, #2a2a2a 100%) no-repeat,
-        url('https://www.transparenttextures.com/patterns/noise.png');
-
-      background-size: cover, cover, auto;
-      background-blend-mode: overlay, normal; 
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
     }
 
+    * {
+      box-sizing: border-box;
+    }
+
+    a {
+      transition: all 0.3s ease;
+    }
+
+    /* NAVIGATION */
     header {
-      position: sticky;
-      top: 0;
+      position: fixed;
+      top: 0; left: 0; right: 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1em 2em;
-      backdrop-filter: blur(10px);
-      background: rgba(31, 31, 31, 0.7);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      z-index: 999;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      background: rgba(15,46,59,0.8);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
-    header .branding a {
-      color: var(--accent-color);
+    .branding a {
       text-decoration: none;
-      font-weight: 700;
-      font-size: 1.2em;
-      letter-spacing: 0.05em;
+      font-family: var(--font-mono);
+      font-size: 1.5em;
+      color: var(--color-teal);
     }
 
-    header .nav-links a {
+    nav a {
       margin-left: 1.5em;
-      color: var(--text-color);
       text-decoration: none;
+      color: var(--text-color);
       font-weight: 500;
+      font-size: 0.95em;
       position: relative;
-      transition: transform 0.3s ease, color 0.3s ease;
     }
 
-    header .nav-links a::after {
+    nav a::after {
       content: "";
       position: absolute;
       bottom: -3px;
       left: 50%;
-      transform: translateX(-50%) scaleX(0);
-      transform-origin: center;
+      width: 0;
       height: 2px;
+      background: var(--color-orange);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    nav a:hover::after {
       width: 100%;
-      background: linear-gradient(to right, var(--accent-color), #fff);
-      transition: transform 0.3s ease;
     }
 
-    header .nav-links a:hover::after {
-      transform: translateX(-50%) scaleX(1);
+    nav a:hover {
+      transform: scale(1.05);
     }
 
-    header .nav-links a:hover {
-      color: var(--accent-color);
-      transform: translateY(-1px);
-    }
-
-    #home {
+    /* HERO SECTION */
+    #hero {
+      position: relative;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      min-height: 90vh;
+      padding: 0 2em;
       text-align: center;
-      padding: 2em;
-      position: relative;
     }
 
-    #home h1 {
-      font-size: 3em;
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to bottom, rgba(15,46,59,1) 0%, rgba(15,46,59,0.8) 50%, rgba(15,46,59,1) 100%);
+      z-index: -2;
+    }
+
+    #bg-canvas {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: -1;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeSlideIn 1.5s forwards ease-out;
+    }
+
+    @keyframes fadeSlideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: 4em;
       margin: 0;
-      font-weight: 700;
-      background: linear-gradient(to right, var(--accent-color), #ffffff);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: inline-block;
+      line-height: 1;
+      background: linear-gradient(to right, var(--color-teal), var(--color-orange));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    #home h3 {
+    .hero-subtitle {
       font-size: 1.5em;
       margin-top: 0.5em;
+      color: var(--color-lightblue);
       font-weight: 400;
-      color: #cccccc;
-      letter-spacing: 0.02em;
+      margin-bottom: 0.5em;
     }
 
-    #home p {
+    .rotating-tagline {
+      font-size: 1em;
+      color: var(--color-yellow);
+      height: 1em;
+      overflow: hidden;
+      border-right: 2px solid var(--color-yellow);
+      white-space: nowrap;
+      width: 28ch;
+      animation: typing 4s steps(28, end) infinite alternate, blink 1s infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes typing {
+      0% { width: 0ch; }
+      50% { width: 28ch; }
+      100% { width: 0ch; }
+    }
+
+    @keyframes blink {
+      0%,100% { border-color: transparent; }
+      50% { border-color: var(--color-yellow); }
+    }
+
+    .hero-desc {
       max-width: 600px;
-      margin-top: 1em;
-      color: #d0d0d0;
+      margin: 1.5em auto 0;
+      color: #ccc;
       font-size: 1.1em;
       line-height: 1.8;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s forwards 2s ease-out;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     section {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 4em 2em;
+      padding: 6em 2em;
       position: relative;
     }
 
-    section::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-      height: 1px;
-      background: rgba(255,255,255,0.05);
-    }
-
     section h2 {
-      font-size: 2em;
+      font-size: 2.5em;
+      font-family: var(--font-heading);
       margin-bottom: 1em;
       display: inline-block;
-      padding-bottom: 0.25em;
-      background: linear-gradient(to right, #fff, var(--accent-color));
+      background: linear-gradient(to right, var(--color-teal), var(--color-orange));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       font-weight: 700;
       letter-spacing: 0.03em;
+      position: relative;
+    }
+
+    /* ABOUT SECTION */
+    #about {
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* A subtle 3D parallax background: just shapes floating */
+    .about-bg-shapes {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .about-bg-shapes .shape {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, var(--color-teal) 0%, transparent 70%);
+      opacity: 0.1;
+      border-radius: 50%;
+    }
+
+    .about-bg-shapes .shape.orange {
+      background: radial-gradient(circle, var(--color-orange) 0%, transparent 70%);
     }
 
     #about p {
@@ -156,6 +248,65 @@
       margin-bottom: 2em;
       color: #d0d0d0;
       font-size: 1.05em;
+      line-height: 1.8;
+    }
+
+    .skills-container {
+      margin-top: 3em;
+    }
+
+    .skills-title {
+      font-size: 1.5em;
+      margin-bottom: 1em;
+      color: var(--color-yellow);
+      font-family: var(--font-heading);
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+    }
+
+    .skill-badge {
+      background: rgba(255,255,255,0.1);
+      padding: 0.5em 1em;
+      border-radius: 30px;
+      font-size: 0.9em;
+      display: inline-block;
+      transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+      transform: scale(0.95);
+    }
+
+    .skill-badge:hover {
+      background: var(--color-teal);
+      color: #000;
+      transform: scale(1.1);
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    /* PROJECTS SECTION */
+    #projects {
+      animation: fadeInScale 1s forwards ease-out;
+    }
+
+    @keyframes fadeInScale {
+      from {
+        transform: scale(0.95);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    #projects p#projects-intro {
+      max-width: 700px;
+      margin-bottom: 2em;
+      color: #d0d0d0;
+      font-size: 1.1em;
       line-height: 1.8;
     }
 
@@ -168,65 +319,107 @@
 
     .project-card {
       position: relative;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(15px);
+      border-radius: 10px;
       overflow: hidden;
-      border-radius: 8px;
-      background: var(--secondary-color);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      display: flex;
-      flex-direction: column;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.1);
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform 0.5s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+    }
+
+    .project-card[data-aos] {
+      opacity: 0;
+      transform: translateY(30px);
     }
 
     .project-card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+      box-shadow: 0 0 30px rgba(0,0,0,0.6);
+      transform: translateY(-5px) rotate(0.5deg);
     }
 
     .project-card img {
       width: 100%;
-      height: auto;
       display: block;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .project-card:hover img {
+      transform: scale(1.05);
     }
 
     .project-details {
       padding: 1.5em;
-      flex-grow: 1;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      gap: 1em;
     }
 
     .project-details h3 {
+      font-size: 1.4em;
       margin: 0;
-      font-size: 1.25em;
-      margin-bottom: 0.5em;
-      background: linear-gradient(to right, var(--accent-color), #fff);
+      font-family: var(--font-heading);
+      background: linear-gradient(to right, var(--color-teal), var(--color-lightblue));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .project-details p {
-      margin-bottom: 1em;
       font-size: 0.95em;
-      color: #cccccc;
+      color: #ccc;
       line-height: 1.6;
+      margin: 0;
+      flex-grow: 1;
     }
 
-    .project-details a {
-      align-self: flex-start;
+    .project-actions {
+      display: flex;
+      gap: 0.5em;
+      margin-top: 1em;
+    }
+
+    .project-details a,
+    .project-details button {
       text-decoration: none;
-      color: var(--accent-color);
+      color: #1f1f1f;
       font-weight: 700;
       padding: 0.5em 1em;
-      background: rgba(0,173,238,0.2);
       border-radius: 4px;
-      transition: background 0.3s ease, color 0.3s ease;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(to right, var(--color-yellow), var(--color-orange));
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .project-details a:hover {
-      background: var(--accent-color);
-      color: #1f1f1f;
+    .project-details a:hover,
+    .project-details button:hover {
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      transform: translateY(-2px);
+    }
+
+    /* CONTACT */
+    #contact {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--color-navy), var(--color-teal));
+      /* We'll animate via GSAP in JS */
+    }
+
+    /* Decorative element for contact section */
+    .contact-deco {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      top: 50%; left: 50%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.3) 10%, transparent 60%);
+      filter: blur(50px);
+      transform: translate(-50%,-50%);
+      pointer-events: none;
+      z-index: 0;
     }
 
     #contact p {
@@ -234,62 +427,139 @@
       color: #d0d0d0;
       font-size: 1.05em;
       line-height: 1.8;
+      position: relative;
+      z-index: 1;
     }
 
     #contact .links-container {
       display: flex;
-      flex-direction: row;
       flex-wrap: wrap;
       gap: 1.5em;
       margin-top: 2em;
+      position: relative;
+      z-index: 1;
     }
 
     #contact .links-container a {
       text-decoration: none;
-      background: rgba(0,173,238,0.2);
-      padding: 0.75em 1.5em;
-      border-radius: 25px;
       font-weight: 700;
-      color: var(--text-color);
-      transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
-      letter-spacing: 0.03em;
+      padding: 0.75em 1.5em;
+      border-radius: 50px;
+      background: linear-gradient(to right, var(--color-yellow), var(--color-orange));
+      color: #000;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transform: scale(0.95);
     }
 
     #contact .links-container a:hover {
-      background: var(--accent-color);
-      color: #1f1f1f;
-      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(0,0,0,0.7);
+      transform: scale(1.1);
     }
 
     footer {
-      backdrop-filter: blur(10px);
-      background: rgba(31,31,31,0.6);
       text-align: center;
       padding: 2em;
-      color: #999999;
+      color: #999;
       font-size: 0.85em;
       border-top: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(5px);
+      background: rgba(15,46,59,0.8);
+      margin-top: 4em;
     }
 
-    @media screen and (max-width: 600px) {
-      #home h1 {
-        font-size: 2.2em;
+    @media (max-width: 600px) {
+      nav { display: none; }
+      .hero-title {
+        font-size: 2.5em;
       }
-      header .nav-links {
-        display: none;
-      }
+      .hero-subtitle { font-size: 1.2em; }
       #contact .links-container {
         flex-direction: column;
         align-items: flex-start;
       }
+      .rotating-tagline {
+        width: 100%;
+      }
     }
+
+    /* MODAL STYLES */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 9999;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal {
+      background: #1a1a1a;
+      border-radius: 8px;
+      padding: 2em;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 0 30px rgba(0,0,0,0.8);
+      position: relative;
+      animation: modalFadeIn 0.4s ease;
+    }
+
+    @keyframes modalFadeIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal h3 {
+      margin-top: 0;
+      font-family: var(--font-heading);
+      font-size: 1.8em;
+      background: linear-gradient(to right, var(--color-teal), var(--color-orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .modal p {
+      color: #ccc;
+      line-height: 1.6;
+      font-size: 1em;
+      margin: 1em 0;
+    }
+
+    .modal .tech-stack strong {
+      color: var(--color-yellow);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 1.2em;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      color: var(--color-yellow);
+    }
+
   </style>
 </head>
 <body>
 
   <header>
     <div class="branding">
-      <a href="#home">TH</a>
+      <a href="#hero">TH</a>
     </div>
     <nav class="nav-links">
       <a href="#about">About</a>
@@ -297,116 +567,139 @@
       <a href="#contact">Contact</a>
       <a href="https://www.linkedin.com/in/tristanjhartman/" target="_blank">LinkedIn</a>
       <a href="https://github.com/Tristanh77" target="_blank">Github</a>
-      <a href="https://drive.google.com/file/d/1mWo0tSn3e_DrNIocp0NzULJ1619YmxGS/view?usp=sharing" target="_blank">Resume</a>
+      <a href="https://drive.google.com/file/d/1mWo0tSn3e_DrNIocp0NzULJ1619YmxGS/view?usp=sharing" target="_blank">Resume PDF</a>
     </nav>
   </header>
 
-  <section id="home">
-    <h1>Tristan Hartman</h1>
-    <h3>Software Engineer | Full-Stack Developer</h3>
-    <p>
-      Welcome to my portfolio. Explore my background, browse recent projects, and get in touch.
-      I craft clean, efficient code and intuitive user experiences that drive impactful digital solutions.
-    </p>
+  <section id="hero">
+    <canvas id="bg-canvas"></canvas>
+    <div class="hero-content">
+      <h1 class="hero-title">Tristan Hartman</h1>
+      <h3 class="hero-subtitle">Software Engineer | Full-Stack Developer</h3>
+      <div class="rotating-tagline" data-rotate='["Building robust solutions...", "Empowering user experiences...", "Driving innovation...", "Coding with passion..."]'>
+        Building robust solutions...
+      </div>
+      <p class="hero-desc">
+        Explore my portfolio to learn about my expertise, projects, and approach to creating high-impact digital solutions. Let's build something extraordinary together.
+      </p>
+    </div>
   </section>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-        I am a Software Engineer with a strong foundation in designing and implementing user-centric technology solutions. My experience at TeammateMe as a Lead Full Stack Developer involved leading the integration of RESTful APIs and enhancing the functionality and user experience of web applications.
+  <section id="about" data-aos="fade-up" data-aos-duration="1000">
+    <div class="about-bg-shapes">
+      <div class="shape" style="top:10%; left:15%;"></div>
+      <div class="shape orange" style="top:50%; left:60%;"></div>
+      <div class="shape" style="top:80%; left:30%;"></div>
+    </div>
 
-        I studied Software Engineering at Drexel University and completed an intensive 450+ hour Software Engineering Immersive at General Assembly, where I gained hands-on experience in full-stack development, object-oriented programming, and modern web technologies.
-        
-        Driven by curiosity, reliability, and a commitment to excellence, I focus on crafting clean, maintainable code and building intuitive interfaces that enhance user experiences. I thrive in solving complex problems and delivering impactful solutions.
+    <h2 data-aos="fade-up" data-aos-delay="200">About Me</h2>
+    <p data-aos="fade-up" data-aos-delay="300">
+      I'm a software engineer with a passion for creating innovative, user-centric solutions. With experience in both front-end and back-end development, I craft experiences that are not only robust and maintainable, but also visually engaging and intuitive.
     </p>
+    <p data-aos="fade-up" data-aos-delay="400">
+      I believe in the power of collaboration and continuous learning. Whether I'm refining a complex UI component, optimizing a database query, or implementing a scalable API, I keep user needs and performance at the forefront. My goal is to bridge the gap between form and function, delivering code that solves real problems elegantly.
+    </p>
+
+    <div class="skills-container" data-aos="fade-up" data-aos-delay="500">
+      <h3 class="skills-title">Skills & Technologies</h3>
+      <div class="skills-list">
+        <div class="skill-badge">JavaScript</div>
+        <div class="skill-badge">CSS</div>
+        <div class="skill-badge">SQL</div>
+        <div class="skill-badge">GitHub</div>
+        <div class="skill-badge">Python</div>
+        <div class="skill-badge">Node.js</div>
+        <div class="skill-badge">Express.js</div>
+        <div class="skill-badge">Django</div>
+        <div class="skill-badge">AWS</div>
+        <div class="skill-badge">React</div>
+        <div class="skill-badge">Software Testing</div>
+      </div>
+    </div>
   </section>
 
   <section id="projects">
-    <h2>Projects</h2>
+    <h2 data-aos="fade-up">Projects</h2>
+    <p id="projects-intro" data-aos="fade-up" data-aos-delay="200">
+      Below is a selection of projects that reflect my range—from polished front-end interfaces to scalable back-end systems. Each project highlights creative problem-solving, efficient coding practices, and a commitment to delivering engaging user experiences.
+    </p>
     <div id="projects-grid">
-      <div class="project-card">
+      <div class="project-card" data-aos="fade-up" data-aos-delay="300">
         <img src="https://i.imgur.com/ZUNRU23.png" alt="BreatheWell">
         <div class="project-details">
           <h3>BreatheWell</h3>
-          <p>
-            Real-time local air quality tracker offering live updates and personalized health recommendations. Helps users make informed outdoor activity decisions.
-          </p>
-          <a href="https://ga-enviro-hackathon-wind2024.onrender.com/" target="_blank">View App</a>
+          <p>Real-time local air quality tracker offering personalized health advice and insights. Integrates multiple APIs and intuitive data visualization, empowering users to make informed decisions about their environment.</p>
+          <div class="project-actions">
+            <a href="https://ga-enviro-hackathon-wind2024.onrender.com/" target="_blank">View App</a>
+            <button data-modal-target="#modal-breathewell">Learn More</button>
+          </div>
         </div>
       </div>
-      <div class="project-card">
+
+      <div class="project-card" data-aos="fade-up" data-aos-delay="400">
         <img src="https://i.imgur.com/tooHryW.png" alt="MacroCount">
         <div class="project-details">
           <h3>MacroCount</h3>
-          <p>
-            A mobile-first macro tracker designed for simplicity. Input weight, goals, and macro targets easily, and track your nutrition on the go.
-          </p>
-          <a href="https://macrocount.onrender.com/" target="_blank">View App</a>
+          <p>A mobile-first macro tracking app that simplifies dietary planning. Responsive charts, daily logs, and a user-friendly UI encourage healthier eating habits and more mindful nutrition.</p>
+          <div class="project-actions">
+            <a href="https://macrocount.onrender.com/" target="_blank">View App</a>
+            <button data-modal-target="#modal-macrocount">Learn More</button>
+          </div>
         </div>
       </div>
-      <div class="project-card">
+
+      <div class="project-card" data-aos="fade-up" data-aos-delay="500">
         <img src="https://i.imgur.com/0P1oXkh.jpg" alt="Nova">
         <div class="project-details">
           <h3>Nova</h3>
-          <p>
-            A space-focused social media platform built with React, MongoDB, NASA's Image Library API, and AWS integration. Connect through a cosmic lens.
-          </p>
-          <a href="https://tristan-hartman-nova.onrender.com/" target="_blank">View App</a>
+          <p>Space-focused social platform leveraging NASA APIs. Users share cosmic discoveries, discuss new findings, and enjoy captivating visuals, fostering a curious community around astronomy.</p>
+          <div class="project-actions">
+            <a href="https://tristan-hartman-nova.onrender.com/" target="_blank">View App</a>
+            <button data-modal-target="#modal-nova">Learn More</button>
+          </div>
         </div>
       </div>
-      <div class="project-card">
+
+      <div class="project-card" data-aos="fade-up" data-aos-delay="600">
         <img src="https://i.imgur.com/5qPMxDL.png" alt="MedTracker">
         <div class="project-details">
           <h3>MedTracker</h3>
-          <p>
-            A full-stack medicine tracker built with Django, Python, and Materialize. Seamless tracking of prescriptions and schedules to maintain your health.
-          </p>
-          <a href="https://falling-sea-1616.fly.dev/" target="_blank">View App</a>
+          <p>Django-based solution for tracking prescriptions and schedules. Enhances medication adherence and peace of mind with timely reminders and structured data management.</p>
+          <div class="project-actions">
+            <a href="https://falling-sea-1616.fly.dev/" target="_blank">View App</a>
+            <button data-modal-target="#modal-medtracker">Learn More</button>
+          </div>
         </div>
       </div>
-      <div class="project-card">
-        <img src="https://i.imgur.com/yoboWsm.png" alt="AYYM">
-        <div class="project-details">
-          <h3>AYYM</h3>
-          <p>
-            A budget tracking app developed during a week-long hackathon using the MERN stack. Mobile-first and intuitive to keep your finances in check.
-          </p>
-          <a href="https://ayym-3bbe92ba31d6.herokuapp.com/" target="_blank">View App</a>
-        </div>
-      </div>
-      <div class="project-card">
-        <img src="https://i.imgur.com/0caaQiN.png" alt="ForeignCo">
-        <div class="project-details">
-          <h3>ForeignCo</h3>
-          <p>
-            A fantasy car marketplace using MongoDB, Express, and Google's authentication API. Browse, list, and dream about exotic cars.
-          </p>
-          <a href="https://pink-outrageous-pelican.cyclic.app/cars" target="_blank">View App</a>
-        </div>
-      </div>
-      <div class="project-card">
+
+      <div class="project-card" data-aos="fade-up" data-aos-delay="700">
         <img src="https://i.imgur.com/5RQDXQa.png" alt="Blackjack">
         <div class="project-details">
           <h3>Blackjack</h3>
-          <p>
-            The classic casino game recreated with JavaScript, HTML, and CSS. Test your luck and strategy in a clean, intuitive interface.
-          </p>
-          <a href="https://tristanh77.github.io/blackjack2/" target="_blank">View Game</a>
+          <p>A classic card game built with vanilla JavaScript, HTML, and CSS. Smooth animations and intuitive gameplay showcase attention to detail and a passion for polished user experiences.</p>
+          <div class="project-actions">
+            <a href="https://tristanh77.github.io/blackjack2/" target="_blank">View Game</a>
+            <button data-modal-target="#modal-blackjack">Learn More</button>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>
-      Whether you have a project in mind, a question, or just want to say hello, I'd love to hear from you. Feel free to reach out through the channels below.
+  <section id="contact" data-aos="fade-up" data-aos-duration="1000">
+    <div class="contact-deco"></div>
+    <h2 data-aos="fade-up" data-aos-delay="200">Contact</h2>
+    <p data-aos="fade-up" data-aos-delay="300">
+      Looking to collaborate, start a new project, or just exchange insights? I'd love to connect. I'm responsive, open-minded, and eager to dive into meaningful conversations that drive innovation.
     </p>
-    <div class="links-container">
+    <p class="contact-expanded" data-aos="fade-up" data-aos-delay="400">
+      Let's discuss how we can work together to create something extraordinary. Whether you need a polished front-end, a scalable back-end, or a full-stack solution, I'm ready to help transform your vision into reality. Reach out, and let's start building.
+    </p>
+    <div class="links-container" data-aos="fade-up" data-aos-delay="500">
       <a href="mailto:tristanhartman77@gmail.com">Email Me</a>
       <a href="https://www.linkedin.com/in/tristanjhartman/" target="_blank">LinkedIn</a>
       <a href="https://github.com/Tristanh77" target="_blank">GitHub</a>
-      <a href="https://drive.google.com/file/d/1mWo0tSn3e_DrNIocp0NzULJ1619YmxGS/view?usp=sharing" target="_blank">Resume</a>
+      <a href="https://drive.google.com/file/d/1mWo0tSn3e_DrNIocp0NzULJ1619YmxGS/view?usp=sharing" target="_blank">Resume PDF</a>
     </div>
   </section>
 
@@ -414,19 +707,188 @@
     &copy; 2024 Tristan Hartman. All rights reserved.
   </footer>
 
+  <!-- Modals -->
+  <div class="modal-overlay" id="modal-breathewell-overlay">
+    <div class="modal" id="modal-breathewell">
+      <button class="modal-close" data-close>✕</button>
+      <h3>BreatheWell</h3>
+      <p>Up-to-date air quality indexes for your location, offering actionable health tips and recommended precautions based on real-time data.</p>
+      <p class="tech-stack"><strong>Tech Stack:</strong> Node.js, Express, EJS, OpenWeatherMap & AirVisual APIs</p>
+      <p><strong>Key Learnings:</strong> API integration, data visualization, and real-time environmental data processing.</p>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-macrocount-overlay">
+    <div class="modal" id="modal-macrocount">
+      <button class="modal-close" data-close>✕</button>
+      <h3>MacroCount</h3>
+      <p>Track daily macronutrient intake through a mobile-first interface, supporting healthier eating habits and transparent nutrition data.</p>
+      <p class="tech-stack"><strong>Tech Stack:</strong> React, Node.js, Express, MongoDB</p>
+      <p><strong>Key Learnings:</strong> Responsive design, secure authentication, and persistent data management.</p>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-nova-overlay">
+    <div class="modal" id="modal-nova">
+      <button class="modal-close" data-close>✕</button>
+      <h3>Nova</h3>
+      <p>Connects astronomy enthusiasts with NASA's image library, inspiring discussions, knowledge sharing, and a passion for the cosmos.</p>
+      <p class="tech-stack"><strong>Tech Stack:</strong> React, Node.js, Express, MongoDB, NASA APIs</p>
+      <p><strong>Key Learnings:</strong> External API integration, React state management, community-focused UX.</p>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-medtracker-overlay">
+    <div class="modal" id="modal-medtracker">
+      <button class="modal-close" data-close>✕</button>
+      <h3>MedTracker</h3>
+      <p>Centralizes prescription info, dosage schedules, and reminders, supporting adherence and user well-being.</p>
+      <p class="tech-stack"><strong>Tech Stack:</strong> Django, Python, PostgreSQL</p>
+      <p><strong>Key Learnings:</strong> CRUD in Django, user session management, data integrity in healthcare.</p>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-blackjack-overlay">
+    <div class="modal" id="modal-blackjack">
+      <button class="modal-close" data-close>✕</button>
+      <h3>Blackjack</h3>
+      <p>A pure JS, HTML, and CSS card game highlighting core logic, DOM manipulation, and polished interface animations.</p>
+      <p class="tech-stack"><strong>Tech Stack:</strong> JavaScript (ES6), HTML5, CSS3</p>
+      <p><strong>Key Learnings:</strong> Core JS logic, intuitive UI design, smooth animations without frameworks.</p>
+    </div>
+  </div>
+
+  <!-- AOS and GSAP scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-fM0aUn1gNRC2ZpKXOoeAK3q3WHxa0Jm20K0GyI64h9UtSvz7iv63d9lNGovQrVu0VXcRapl0XiGJazpZ07tUBQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <script>
-    // Select all internal links in the header that start with #
-    const internalLinks = document.querySelectorAll('header a[href^="#"]');
-  
-    internalLinks.forEach(link => {
-      link.addEventListener('click', event => {
-        event.preventDefault();
-        const targetId = link.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        if (targetSection) {
-          targetSection.scrollIntoView({ behavior: 'smooth' });
+    // Initialize AOS
+    AOS.init();
+
+    // Smooth scrolling for internal links
+    document.querySelectorAll('header a[href^="#"], .branding a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
         }
       });
+    });
+
+    // Background canvas with swirling particles
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    let particles = [];
+
+    function resize() {
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = w;
+      canvas.height = h;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random()*w;
+        this.y = Math.random()*h;
+        this.vx = (Math.random()-0.5)*0.8;
+        this.vy = (Math.random()-0.5)*0.8;
+        this.size = Math.random()*3+1;
+        this.color = Math.random() > 0.5 ? 'rgba(90,160,188,0.7)' : 'rgba(242,137,48,0.7)';
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if(this.x < 0 || this.x > w) this.vx *= -1;
+        if(this.y < 0 || this.y > h) this.vy *= -1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
+
+    for(let i=0;i<150;i++){
+      particles.push(new Particle());
+    }
+
+    function animate() {
+      ctx.clearRect(0,0,w,h);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Modal functionality
+    const modalTriggers = document.querySelectorAll('[data-modal-target]');
+    const modalCloseButtons = document.querySelectorAll('[data-close]');
+    const modalOverlays = document.querySelectorAll('.modal-overlay');
+
+    modalTriggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const modal = document.querySelector(trigger.dataset.modalTarget);
+        openModal(modal);
+      });
+    });
+
+    modalOverlays.forEach(overlay => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          closeModal(overlay.querySelector('.modal'));
+        }
+      });
+    });
+
+    modalCloseButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const modal = button.closest('.modal');
+        closeModal(modal);
+      });
+    });
+
+    function openModal(modal) {
+      if (!modal) return;
+      modal.parentElement.classList.add('active');
+    }
+
+    function closeModal(modal) {
+      if (!modal) return;
+      modal.parentElement.classList.remove('active');
+    }
+
+    // GSAP animations
+    // Animate the about background shapes slowly
+    gsap.to(".about-bg-shapes .shape", {
+      duration: 20,
+      x: "+=50",
+      y: "+=50",
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      stagger: {
+        each: 5,
+        from: "random"
+      }
+    });
+
+    // Animate the contact decorative element
+    gsap.to(".contact-deco", {
+      duration: 8,
+      scale: 1.2,
+      rotation: 45,
+      yoyo: true,
+      repeat: -1,
+      ease: "sine.inOut"
     });
   </script>
 </body>
